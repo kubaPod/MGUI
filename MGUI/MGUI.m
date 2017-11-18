@@ -13,7 +13,7 @@ BeginPackage["MGUI`"];
   ClearAll @ "MGUI`*";
 
   MSorter;
-  NestedView;
+
   
 
 
@@ -21,11 +21,11 @@ BeginPackage["MGUI`"];
     (*each controller should defined within own context 
       so put here stuff you need to be seen inside
      *)
-     $panelWrapper
-     $errorPanels
-     setForwardCompatibility
-     BoxLoadingWrapper
-     GuiToBoxes
+     $panelWrapper;
+     $errorPanels;
+     setForwardCompatibility;
+     BoxLoadingWrapper;
+     GuiToBoxes;
   
   EndPackage[];
 
@@ -37,7 +37,7 @@ BeginPackage["MGUI`"];
 (*body*)
 
 
-(* ::Subsection::Closed:: *)
+(* ::Subsection:: *)
 (*commons*)
 
 
@@ -89,13 +89,11 @@ BoxLoadingWrapper[ box_ ]:= With[{ failedLoadingPanel = $errorPanels["failedLoad
 ]] 
 
 
-GuiToBoxes[a___, r___]:= ToBoxes @ $panelWrapper["Unknown syntax error. Failed to typeset: "<>ToString[a,InputForm]]
+GuiToBoxes[a_:"", r___]:= ToBoxes @ $panelWrapper["Unknown syntax error. Failed to typeset: "<>ToString[a,InputForm]]
 
 
 (* ::Subsection:: *)
 (*MSorter*)
-
-
 
 
 (*TODO: support for parts*)
@@ -104,8 +102,7 @@ GuiToBoxes[a___, r___]:= ToBoxes @ $panelWrapper["Unknown syntax error. Failed t
 Begin["`MSorter`"];
 
   MSorter::usage = "MSorter[Dynamic@list, OptionsPattern[]] creates gui to control list's elements ordering.";
-
-  MSorter // ClearAll
+ 
   MSorter // Options = {
    ContinuousAction -> False(*,
    "EmbeddingMethod" \[Rule] Automatic*)
@@ -180,7 +177,7 @@ Begin["`MSorter`"];
       
     , Initialization :>(
         print = Print[Framed@Column[{#}]]&;
-        print = Function[,Null,HoldAll]
+        print = Function[x,Null,HoldAll]
         
        ; this["init"]:= (
           print["init"]
@@ -272,7 +269,6 @@ End[]
 
 (* ::Section:: *)
 (*end*)
-
 
 
 End[];
