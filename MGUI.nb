@@ -1,0 +1,448 @@
+Notebook[{
+Cell[BoxData[
+ RowBox[{"SetDirectory", "@", 
+  RowBox[{
+  "NotebookDirectory", "[", 
+   "]"}]}]], "Input",ExpressionUUID->"5803f8a3-522c-4f60-aad0-f88490093b0f"],
+
+Cell[BoxData[
+ RowBox[{"CreateFile", "[", 
+  RowBox[{"\"\<MGUI/MGUI.m\>\"", ",", 
+   RowBox[{"CreateIntermediateDirectories", "\[Rule]", "True"}]}], 
+  "]"}]], "Input",ExpressionUUID->"71161a0a-fcbe-4098-95bf-88ee40626c72"],
+
+Cell[BoxData[
+ RowBox[{"Export", "[", "\[IndentingNewLine]", 
+  RowBox[{"\"\<MGUI/PacletInfo.m\>\"", ",", "\[IndentingNewLine]", 
+   RowBox[{"Paclet", "[", 
+    RowBox[{
+     RowBox[{"Name", "\[Rule]", "\"\<MGUI\>\""}], ",", 
+     RowBox[{"Version", "\[Rule]", "\"\<0.0.1\>\""}], ",", 
+     RowBox[{"MathematicaVersion", "\[Rule]", "\"\<10+\>\""}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"Extensions", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"{", 
+        RowBox[{"\"\<Kernel\>\"", ",", 
+         RowBox[{"Root", "\[Rule]", "\"\<.\>\""}], ",", 
+         RowBox[{"Context", "\[Rule]", "\"\<MGUI`\>\""}]}], "}"}], "}"}]}]}], 
+    "]"}], ",", "\[IndentingNewLine]", "\"\<Package\>\""}], 
+  "\[IndentingNewLine]", 
+  "]"}]], "Input",ExpressionUUID->"978c3eb8-cf7f-41ec-b669-dde592fd8235"],
+
+Cell[BoxData[
+ RowBox[{"Normal", "[", "PacletManager`Paclet`Private`$piDefaults", 
+  "]"}]], "Input",ExpressionUUID->"b7e7fb04-c513-468f-ab1e-1cefc4029597"],
+
+Cell[BoxData[
+ RowBox[{"\n", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      RowBox[{"--", 
+       RowBox[{"--", 
+        RowBox[{"--", " ", "practices"}]}]}], " ", "that", " ", "should", " ",
+       "be", " ", 
+      RowBox[{
+       RowBox[{"followed", " ", "--"}], "--"}]}], "-", "\n", "   ", 
+     RowBox[{"-", " ", 
+      RowBox[{
+      "Controler", " ", "do", " ", "not", " ", "burn", " ", "boxes", " ", 
+       "into", " ", "files"}]}], "\n", "   ", "-", " ", 
+     RowBox[{
+     "Displays", " ", "are", " ", "versioned", " ", "and", " ", "default", 
+      " ", "display", " ", "is", " ", "defined", " ", "for", " ", "forward", 
+      " ", "compatibility"}], "\n", "   ", "-", " ", 
+     RowBox[{"If", " ", "applies"}]}], ",", " ", 
+    RowBox[{
+     RowBox[{"support", " ", "for", " ", "continuous", " ", "action"}], "\n", 
+     "   ", "-", " ", 
+     RowBox[{"EmbeddingMethod", ":", " ", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"None", "/", "Needs"}], "/", "ExtendedFullDefinition"}], "\n",
+        "   ", "-", " ", 
+       RowBox[{
+       "Obviously", " ", "two", " ", "way", " ", "binding", " ", "with", " ", 
+        "external", " ", "variable"}], "\n", "   ", "-", " ", 
+       RowBox[{
+       "Queued", " ", "controllers", " ", "with", " ", "progress", " ", 
+        "preview", " ", "need", " ", "to", " ", "handle", " ", "aborts"}], 
+       "\n", "   ", "-", " ", 
+       RowBox[{
+       "separate", " ", "contexts", "\n", "   ", "\n", "   ", "*", " ", 
+        "Kernel", " ", "quit", " ", "if", " ", "possible"}]}]}]}], ",", " ", 
+    RowBox[{
+    "and", " ", "usually", " ", "not", " ", "possible", " ", "due", " ", "to",
+      " ", "Dynamic", " ", "bugs"}]}], "\n", "\n", "*)"}], "\n", "\n", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{"note", " ", "on", " ", "display", " ", 
+     RowBox[{"versioning", ".", " ", "\n", "\n", "   ", "it"}], " ", "has", 
+     " ", "a", " ", "limited", " ", 
+     RowBox[{"use", ".", " ", "what"}], " ", "it", " ", "allows", " ", "is", 
+     " ", "the", " ", "new", " ", "display", " ", 
+     RowBox[{"won", "'"}], "t", " ", "screw", " ", "with", " ", "already", 
+     " ", "created", "\n", "   ", 
+     RowBox[{"interfaces", ".", " ", "But"}], " ", "if", " ", "you", " ", 
+     "MakeExpression"}], ",", " ", 
+    RowBox[{"the", " ", "versioning", " ", "info", " ", "is", " ", "lost"}], 
+    ",", " ", 
+    RowBox[{
+    "and", " ", "new", " ", "controller", " ", "\n", "   ", "usage", " ", 
+     "may", " ", "not", " ", "even", " ", "allow", " ", "what", " ", "was", 
+     " ", 
+     RowBox[{"read", ".", " ", "So"}]}], ",", " ", 
+    RowBox[{
+    "it", " ", "is", " ", "a", " ", "nice", " ", "tiny", " ", "feature", " ", 
+     "but", " ", "you", " ", "need", " ", "to", " ", "\n", "   ", "make", " ",
+      "usage", " ", "compatible", " ", "anyway"}]}], "\n", " ", "*)"}], "\n", 
+  " ", "\n", " ", 
+  RowBox[{"(*", 
+   RowBox[{"TODO", ":", " ", 
+    RowBox[{
+    "Full", " ", "EmbeddingMethod", 
+     "\"\<\n   problems -> DynamicModule/Save/FullDefinition methods may \
+catch too much ($MachineId etc), and can't be restricted like e.g. \
+ExtendedDefinition\n            -> Language methods are too greedy, different \
+versions may interere and delete other definitions.\n            -> not a \
+problem but worth to keep in mind that contexts needs to be handled during \
+compression so we won't loose info.\n \>"}]}], "*)"}]}]], "Code",
+ CellChangeTimes->{
+  3.713243465957138*^9, {3.7132435197996745`*^9, 3.713243646437605*^9}, {
+   3.713243753988471*^9, 3.713243928798331*^9}, {3.7132439602350197`*^9, 
+   3.713244074882086*^9}, {3.7132444907900786`*^9, 3.713244546377486*^9}, {
+   3.713244596738764*^9, 3.7132447498644886`*^9}, {3.7132448288445063`*^9, 
+   3.7132448338381157`*^9}, {3.713245148695284*^9, 3.7132451642736816`*^9}, {
+   3.713245342831839*^9, 3.713245346143641*^9}, {3.71324539588608*^9, 
+   3.713245438998045*^9}, {3.7132459089768744`*^9, 3.7132459959886713`*^9}, {
+   3.713246096183821*^9, 3.713246097049773*^9}, {3.713291399549424*^9, 
+   3.7132914495324244`*^9}, {3.7132914821400247`*^9, 
+   3.7132915333728247`*^9}, {3.713293799670536*^9, 3.7132938446311364`*^9}, {
+   3.7132938763083363`*^9, 3.7132939021491365`*^9}, {3.7132942374421387`*^9, 
+   3.713294348608139*^9}, {3.713296043902249*^9, 3.713296138707649*^9}, {
+   3.71329618488785*^9, 3.71329624391605*^9}, {3.7132965640690517`*^9, 
+   3.7132966133492527`*^9}, {3.713296645957453*^9, 3.713296761004053*^9}, {
+   3.7132969653181543`*^9, 3.713297410186957*^9}, {3.7132975041097574`*^9, 
+   3.713297560362158*^9}, {3.713297602884158*^9, 3.7132976136827583`*^9}, {
+   3.7132976448935585`*^9, 3.7132976764823585`*^9}, {3.713297861217659*^9, 
+   3.713297892917059*^9}, 3.71329797705686*^9, {3.71329802368606*^9, 
+   3.7132980549948606`*^9}, {3.7132981614000607`*^9, 
+   3.7132982831142616`*^9}, {3.713298327198462*^9, 3.7132983713522625`*^9}, {
+   3.7132984504152627`*^9, 3.713298492202463*^9}, {3.713298529695263*^9, 
+   3.7132985560074635`*^9}, {3.7132986236266637`*^9, 
+   3.7132986293128643`*^9}, {3.7132987048734646`*^9, 3.713298732112664*^9}, 
+   3.713298775000865*^9, {3.713298826247465*^9, 3.713298829495265*^9}, {
+   3.7132992177156677`*^9, 3.7132992251912675`*^9}, {3.7132995462746696`*^9, 
+   3.7132995475724697`*^9}, {3.7132996512586703`*^9, 
+   3.7132996579122705`*^9}, {3.713299789379071*^9, 3.7132998665458717`*^9}, {
+   3.713332099335601*^9, 3.713332157802601*^9}, {3.7133322160116014`*^9, 
+   3.7133322639246016`*^9}, {3.713332980246601*^9, 3.7133329803556013`*^9}, {
+   3.7133340738236012`*^9, 3.713334138222601*^9}, {3.713338780653601*^9, 
+   3.713338811890601*^9}, {3.713351551933611*^9, 3.7133516093178115`*^9}, 
+   3.7133715685061007`*^9, {3.713372061292901*^9, 3.7133721067211013`*^9}, {
+   3.7133725675455017`*^9, 3.713372600683502*^9}, {3.7133726866635017`*^9, 
+   3.713372712514502*^9}, {3.713372756407502*^9, 3.7133727589785023`*^9}, {
+   3.7133795930562086`*^9, 3.7133796063102083`*^9}, {3.7133806441995134`*^9, 
+   3.7133807285763144`*^9}, 3.7133807828533144`*^9, {3.713381102042315*^9, 
+   3.7133811641323147`*^9}, {3.713526350178675*^9, 3.713526387075424*^9}, {
+   3.7136758906146607`*^9, 3.7136759307414045`*^9}, {3.7136768323515825`*^9, 
+   3.7136768671775117`*^9}, {3.7136772548012805`*^9, 3.713677272437892*^9}, {
+   3.7136832795515647`*^9, 3.7136832919245095`*^9}, {3.7136833222613077`*^9, 
+   3.713683335151585*^9}, {3.713871719959516*^9, 3.7138717759685163`*^9}, {
+   3.7138880518125033`*^9, 3.7138880591805034`*^9}, {3.7138881966275034`*^9, 
+   3.713888197676503*^9}, {3.713896305992305*^9, 3.713896306202305*^9}, {
+   3.7181236846111*^9, 3.7181236892711*^9}, {3.7181244143391004`*^9, 
+   3.7181244405411005`*^9}, {3.7181249196741004`*^9, 
+   3.7181249490791006`*^9}, {3.7181260771381006`*^9, 
+   3.7181260857811003`*^9}, {3.7181261383861003`*^9, 
+   3.7181261719401007`*^9}, {3.7181262311121006`*^9, 
+   3.7181262453951006`*^9}, {3.7181263294801006`*^9, 3.7181263613941*^9}, {
+   3.7181267741741004`*^9, 3.7181268079801006`*^9}, {3.7181268869961004`*^9, 
+   3.7181268976781006`*^9}, {3.7181269563201003`*^9, 
+   3.7181269565421004`*^9}, {3.7181270125011005`*^9, 3.7181271614931*^9}, {
+   3.7181276504891005`*^9, 3.7181276577511005`*^9}, {3.7181277450871005`*^9, 
+   3.7181277623181005`*^9}, 3.7181278169571004`*^9, {3.7181278491831007`*^9, 
+   3.7181278553721004`*^9}, {3.7181287779511003`*^9, 
+   3.7181287937351007`*^9}, {3.7181288785621004`*^9, 
+   3.7181289216071005`*^9}, {3.7181289947171*^9, 3.7181290072321005`*^9}, {
+   3.7181291693911004`*^9, 3.7181292180871005`*^9}, {3.7181292526201005`*^9, 
+   3.7181293204371004`*^9}, {3.7181293798371005`*^9, 
+   3.7181294168571005`*^9}, {3.7181294619761004`*^9, 
+   3.7181294669841003`*^9}, {3.7181295622561007`*^9, 3.7181296103491*^9}, {
+   3.7181296539871006`*^9, 3.7181297164621005`*^9}, {3.7181297881251*^9, 
+   3.7181298065261*^9}, {3.7181298405041003`*^9, 3.7181298412421007`*^9}, {
+   3.7181298823951006`*^9, 3.7181298913991003`*^9}, {3.7181299272341003`*^9, 
+   3.7181300466061*^9}, {3.7181301942151003`*^9, 3.7181301946631002`*^9}, {
+   3.7181302395941005`*^9, 3.7181303287291*^9}, {3.7181303802881002`*^9, 
+   3.7181304051641006`*^9}, {3.7181306573761005`*^9, 3.7181306600691004`*^9}, 
+   3.7181306922201004`*^9, {3.7181310519421005`*^9, 3.7181311951171007`*^9}, {
+   3.7181314516261005`*^9, 3.7181314938311005`*^9}, {3.7181315456001005`*^9, 
+   3.7181315668511004`*^9}, {3.7181322483681*^9, 3.7181322615521*^9}, {
+   3.7181325541151004`*^9, 3.7181325545441003`*^9}, {3.7181326205911007`*^9, 
+   3.7181327446301003`*^9}, {3.7181328497931004`*^9, 
+   3.7181328506641006`*^9}, {3.7181328892641*^9, 3.7181332352441006`*^9}, {
+   3.7181333702811003`*^9, 3.7181334425931005`*^9}, {3.7181334905451*^9, 
+   3.7181335565201006`*^9}, {3.7181336955531006`*^9, 
+   3.7181337371451006`*^9}, {3.7181341198821*^9, 3.7181341474831004`*^9}, {
+   3.7181343213861003`*^9, 3.7181344319511003`*^9}, {3.7181348968091*^9, 
+   3.7181349056491003`*^9}, {3.7181349442921004`*^9, 
+   3.7181349717151003`*^9}, {3.7181699723574*^9, 3.7181699751924*^9}, {
+   3.7181706326764*^9, 3.7181706377994003`*^9}, {3.7181712504954*^9, 
+   3.7181712758064003`*^9}, {3.7181713887454*^9, 3.7181713907344*^9}, {
+   3.7181714553014*^9, 3.7181714855494003`*^9}, {3.7181716266054*^9, 
+   3.7181716754063997`*^9}, {3.7181719005903997`*^9, 3.7181719056384*^9}, {
+   3.7181719484624*^9, 3.7181720333034*^9}, {3.7181720704484*^9, 
+   3.7181721198864*^9}, {3.7181722287104*^9, 3.7181722666963997`*^9}, {
+   3.7181724656674*^9, 3.7181724675123997`*^9}, {3.7181725074463997`*^9, 
+   3.7181725092504*^9}, {3.7181725484304*^9, 3.7181726139264*^9}, {
+   3.7182193761393037`*^9, 3.7182194025923033`*^9}, {3.7182198471893034`*^9, 
+   3.7182199673403034`*^9}, {3.7182200244933033`*^9, 
+   3.7182200748363037`*^9}, {3.718220207268304*^9, 3.7182202514883037`*^9}, {
+   3.7182203036583033`*^9, 3.718220359353304*^9}, {3.718220424451*^9, 
+   3.718220479076*^9}, {3.7182205201879997`*^9, 3.7182205921940002`*^9}, {
+   3.718220635542*^9, 3.7182206903900003`*^9}, {3.718220724671*^9, 
+   3.718220731605*^9}, {3.7182210113199997`*^9, 3.718221012677*^9}, {
+   3.718252552053215*^9, 3.718252663557215*^9}, {3.718261004357215*^9, 
+   3.7182610259832153`*^9}, 3.7182611067332153`*^9, {3.7182612033792152`*^9, 
+   3.718261244787215*^9}, {3.718261641397215*^9, 3.718261655123215*^9}, {
+   3.7182616919082155`*^9, 3.7182618904082155`*^9}, {3.718262393637215*^9, 
+   3.7182624144342155`*^9}, 3.718390880616623*^9, {3.718563948418316*^9, 
+   3.7185639503933153`*^9}, {3.7185657014836245`*^9, 3.718565745452424*^9}, {
+   3.7185662389884276`*^9, 3.718566442262229*^9}, {3.7187375928390017`*^9, 
+   3.7187376158510017`*^9}, {3.7188214412390003`*^9, 3.718821448302*^9}, {
+   3.718821487983*^9, 
+   3.718821497054*^9}},ExpressionUUID->"9a4beed5-f0d6-46dc-a572-8eadb72f4511"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"?", 
+  "MGUI`*"}]], "Input",ExpressionUUID->"28ef47fc-98d2-4977-95b6-bf3dc2a139c5"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ DynamicModuleBox[{Typeset`open$$ = True}, 
+  PaneSelectorBox[{False->
+   RowBox[{
+    OpenerBox[Dynamic[Typeset`open$$],
+     ImageSize->Small], 
+    StyleBox["MGUI`", "InfoHeading"]}], True->GridBox[{
+     {
+      RowBox[{
+       OpenerBox[Dynamic[Typeset`open$$],
+        ImageSize->Small], 
+       StyleBox["MGUI`", "InfoHeading"]}]},
+     {GridBox[{
+        {
+         ButtonBox["MSorter",
+          BaseStyle->"InformationLink",
+          ButtonData:>{"Info353720033063-5720961", {"MSorter", "MGUI`"}},
+          ButtonNote->"MGUI`"], 
+         ButtonBox["NestedView",
+          BaseStyle->"InformationLink",
+          ButtonData:>{"Info353720033063-5720961", {"NestedView", "MGUI`"}},
+          ButtonNote->"MGUI`"]}
+       },
+       DefaultBaseStyle->"InfoGrid",
+       GridBoxItemSize->{"Columns" -> {{
+            Scaled[0.475]}}}]}
+    },
+    GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}}]}, 
+   Dynamic[Typeset`open$$],
+   ImageSize->
+    Automatic]]], "Print", \
+"InfoCell",ExpressionUUID->"4148587f-a2f4-49fc-b604-923840d473d3"],
+
+Cell["MGUI`MSorter", "Print", "PrintUsage",
+ CellTags->
+  "Info353720033063-5720961",ExpressionUUID->"746b1dda-d452-4ea3-869e-\
+84d37bc840fd"],
+
+Cell[BoxData[
+ InterpretationBox[GridBox[{
+    {
+     RowBox[{
+      RowBox[{"Attributes", "[", "MSorter", "]"}], "=", 
+      RowBox[{"{", "Protected", "}"}]}]},
+    {" "},
+    {GridBox[{
+       {
+        RowBox[{
+         RowBox[{"MakeBoxes", "[", 
+          RowBox[{
+          "MGUI`Private`MSorter`controller_MSorter", ",", 
+           "MGUI`Private`MSorter`fmt_"}], "]"}], "^:=", 
+         RowBox[{"MGUI`Common`GuiToBoxes", "[", 
+          RowBox[{
+          "MGUI`Private`MSorter`controller", ",", 
+           "MGUI`Private`MSorter`fmt"}], "]"}]}]}
+      },
+      BaselinePosition->{Baseline, {1, 1}},
+      GridBoxAlignment->{
+       "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+        "RowsIndexed" -> {}},
+      GridBoxItemSize->{"Columns" -> {{
+           Scaled[0.999]}}, "ColumnsIndexed" -> {}, "Rows" -> {{1.}}, 
+        "RowsIndexed" -> {}}]},
+    {" "},
+    {GridBox[{
+       {
+        RowBox[{
+         RowBox[{"Options", "[", "MSorter", "]"}], "=", 
+         RowBox[{"{", 
+          RowBox[{"ContinuousAction", "\[Rule]", "False"}], "}"}]}]}
+      },
+      BaselinePosition->{Baseline, {1, 1}},
+      GridBoxAlignment->{
+       "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+        "RowsIndexed" -> {}},
+      GridBoxItemSize->{"Columns" -> {{
+           Scaled[0.999]}}, "ColumnsIndexed" -> {}, "Rows" -> {{1.}}, 
+        "RowsIndexed" -> {}}]}
+   },
+   BaselinePosition->{Baseline, {1, 1}},
+   GridBoxAlignment->{
+    "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+     "RowsIndexed" -> {}}],
+  Definition[MGUI`MSorter],
+  Editable->False]], "Print",
+ CellTags->
+  "Info353720033063-5720961",ExpressionUUID->"892cc579-9e26-4b01-a3d2-\
+1854169fa603"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["MSorter", \
+"Subsubsection",ExpressionUUID->"dd693eb2-fe53-43c7-8875-ce49ef1605c8"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"DynamicModule", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"labels", "=", 
+     RowBox[{"Range", "[", "15", "]"}]}], "}"}], "\[IndentingNewLine]", ",", 
+   RowBox[{"Row", "[", 
+    RowBox[{
+     RowBox[{"{", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"MSorter", "[", 
+        RowBox[{
+         RowBox[{"Dynamic", "@", "labels"}], ",", 
+         RowBox[{"ContinuousAction", "\[Rule]", "True"}]}], "]"}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{"MSorter", "[", 
+        RowBox[{"Dynamic", "@", "labels"}], "]"}], ",", "\[IndentingNewLine]", 
+       RowBox[{"Button", "[", 
+        RowBox[{"\"\<reset\>\"", ",", 
+         RowBox[{"labels", "=", 
+          RowBox[{"Range", "[", "5", "]"}]}]}], "]"}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{"Dynamic", "@", 
+        RowBox[{"Column", "[", 
+         RowBox[{"Pane", "/@", "labels"}], "]"}]}]}], "\[IndentingNewLine]", 
+      "}"}], ",", "\"\< \>\""}], "\[IndentingNewLine]", "]"}]}], 
+  "\[IndentingNewLine]", 
+  "]"}]], "Input",ExpressionUUID->"5bd7922a-3e27-45c5-949b-8e963409c2e2"],
+
+Cell[BoxData[
+ DynamicModuleBox[{$CellContext`labels$$ = {2, 4, 1, 3, 5}}, 
+  TemplateBox[{"\[ThinSpace]","\" \"",InterpretationBox[
+     DynamicModuleBox[{
+      MGUI`Private`ready$$, MGUI`Private`display$$, 
+       MGUI`Private`initialization$$}, 
+      DynamicBox[
+       ToBoxes[
+        If[
+         TrueQ[MGUI`Private`ready$$], MGUI`Private`display$$, 
+         ProgressIndicator[Appearance -> "Percolate"]], StandardForm], 
+       ImageSizeCache -> {100., {84., 91.}}, 
+       TrackedSymbols :> {MGUI`Private`ready$$}], 
+      DynamicModuleValues :> {{
+        DownValues[MGUI`Private`initialization$$] = {HoldPattern[
+             MGUI`Private`initialization$$[]] :> (If[
+              Check[Needs["MGUI`"]; True, False], MGUI`Private`display$$ = 
+              MGUI`Private`MSorter`MSorterBox[1, 
+                Dynamic[$CellContext`labels$$], ContinuousAction -> True], 
+              MGUI`Private`display$$ = Tooltip[
+                Style["\[WarningSign]", 40, 
+                 RGBColor[1, 0.25, 0]], 
+                "Failed to load MGUI`, rendering aborted.", 
+                TooltipStyle -> {"Panel", "Message"}]]; 
+            MGUI`Private`ready$$ = True)}}}, 
+      Initialization :> (MGUI`Private`initialization$$[] := (If[
+           Check[Needs["MGUI`"]; True, False], MGUI`Private`display$$ = 
+           MGUI`Private`MSorter`MSorterBox[1, 
+             Dynamic[$CellContext`labels$$], ContinuousAction -> True], 
+           MGUI`Private`display$$ = Tooltip[
+             Style["\[WarningSign]", 40, 
+              RGBColor[1, 0.25, 0]], 
+             "Failed to load MGUI`, rendering aborted.", 
+             TooltipStyle -> {"Panel", "Message"}]]; 
+         MGUI`Private`ready$$ = True); MGUI`Private`initialization$$[]), 
+      SynchronousInitialization -> False, 
+      UnsavedVariables :> {MGUI`Private`ready$$, MGUI`Private`display$$}], 
+     MGUI`MSorter[
+      Dynamic[$CellContext`labels$$], ContinuousAction -> True]],
+    InterpretationBox[
+     DynamicModuleBox[{
+      MGUI`Private`ready$$, MGUI`Private`display$$, 
+       MGUI`Private`initialization$$}, 
+      DynamicBox[
+       ToBoxes[
+        If[
+         TrueQ[MGUI`Private`ready$$], MGUI`Private`display$$, 
+         ProgressIndicator[Appearance -> "Percolate"]], StandardForm], 
+       ImageSizeCache -> {100., {84., 91.}}, 
+       TrackedSymbols :> {MGUI`Private`ready$$}], 
+      DynamicModuleValues :> {{
+        DownValues[MGUI`Private`initialization$$] = {HoldPattern[
+             MGUI`Private`initialization$$[]] :> (If[
+              Check[Needs["MGUI`"]; True, False], MGUI`Private`display$$ = 
+              MGUI`Private`MSorter`MSorterBox[1, 
+                Dynamic[$CellContext`labels$$]], MGUI`Private`display$$ = 
+              Tooltip[
+                Style["\[WarningSign]", 40, 
+                 RGBColor[1, 0.25, 0]], 
+                "Failed to load MGUI`, rendering aborted.", 
+                TooltipStyle -> {"Panel", "Message"}]]; 
+            MGUI`Private`ready$$ = True)}}}, 
+      Initialization :> (MGUI`Private`initialization$$[] := (If[
+           Check[Needs["MGUI`"]; True, False], MGUI`Private`display$$ = 
+           MGUI`Private`MSorter`MSorterBox[1, 
+             Dynamic[$CellContext`labels$$]], MGUI`Private`display$$ = Tooltip[
+             Style["\[WarningSign]", 40, 
+              RGBColor[1, 0.25, 0]], 
+             "Failed to load MGUI`, rendering aborted.", 
+             TooltipStyle -> {"Panel", "Message"}]]; 
+         MGUI`Private`ready$$ = True); MGUI`Private`initialization$$[]), 
+      SynchronousInitialization -> False, 
+      UnsavedVariables :> {MGUI`Private`ready$$, MGUI`Private`display$$}], 
+     MGUI`MSorter[
+      Dynamic[$CellContext`labels$$]]],ButtonBox[
+    "\"reset\"", ButtonFunction :> ($CellContext`labels$$ = Range[5]), 
+     Appearance -> Automatic, Evaluator -> Automatic, Method -> "Preemptive"],
+    DynamicBox[
+     ToBoxes[
+      Column[
+       Map[Pane, $CellContext`labels$$]], StandardForm]]},
+   "RowWithSeparators"],
+  DynamicModuleValues:>{}]], \
+"Output",ExpressionUUID->"7e17598c-c199-4a5d-97f2-b0b8069b9476"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{775, 873},
+WindowMargins->{{Automatic, 108}, {18, Automatic}},
+PrivateNotebookOptions->{"FileOutlineCache"->False},
+TrackCellChangeTimes->False,
+FrontEndVersion->"11.2 for Microsoft Windows (64-bit) (September 10, 2017)",
+StyleDefinitions->"Default.nb"
+]
+
