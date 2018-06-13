@@ -1,6 +1,53 @@
 (* ::Package:: *)
 
+(* ::Section:: *)
+(*discussion and meta*)
+
+
 (*Author: Kuba kuba.pod@gmail.com*)
+
+
+(* Rought code template that should be used
+
+   Begin["`#ControllerName`"]
+   
+   #ControllerName::usage = ...
+   #ControllerName // Options = ...
+   
+   #ControllerName /: MakeBoxes[ input : #ControllerName[d_Dynamic, r___], fmt_]:= With[
+     {boxes = BoxLoadingWrapper @ #ControllerNameBoxes[1, d, r]}
+   ,  MakeBoxes[
+        Interpretation[
+          boxes
+        , input
+        ]
+      , fmt  
+      ]
+    ]  
+   
+   #ControllerName /: MakeBoxes[input : #ControllerName[d_, r___], fmt_
+   ]:= MakeBoxes[
+     Interpretation[{var = d}
+     , #ControllerName[Dynamic[var], r]
+     , #ControllerName[var, r]
+     ]
+   , fmt
+   ]  
+   
+   #ControllerNameBoxes // Options = Options @ #ControllerName;
+   
+   #ControllerNameBoxes // setForwardCompatibility ; 
+   
+   #ControllerNameBoxes[1, Dynamic[var_], ...]:=... FUN STUFF
+   
+   End[]
+
+    FAQ:
+    ToBoxes @ ControllerName[4] will lead to nested Interpretation?
+    -Yes, that is fine :P
+    
+
+*)
 
 
 (* ::Section:: *)
@@ -13,12 +60,13 @@ BeginPackage["MGUI`"];
   ClearAll @ "MGUI`*";
 
   MSorter;
+  MVerticalScrollbar;
 
   
 
 
   BeginPackage["`Common`"];
-    (*each controller should defined within own context 
+    (*each controller should be defined within own context 
       so put here stuff you need to be seen inside
      *)
      $panelWrapper;
@@ -92,7 +140,7 @@ BoxLoadingWrapper[ box_ ]:= With[{ failedLoadingPanel = $errorPanels["failedLoad
 GuiToBoxes[a_:"", r___]:= ToBoxes @ $panelWrapper["Unknown syntax error. Failed to typeset: "<>ToString[a,InputForm]]
 
 
-(* ::Subsection:: *)
+(* ::Subsection::Closed:: *)
 (*MSorter*)
 
 
@@ -265,6 +313,137 @@ Begin["`MSorter`"];
   ]
 
 End[]
+
+
+(* ::Subsection:: *)
+(*MVerticalScrollbar*)
+
+
+
+Begin["`MVerticalScrollbar`"]
+   
+
+
+   MVerticalScrollbar::usage = "MVerticalScrollbar[Dynamic[scrollPosition_], opts___] creates a vertical scrollbar."
+   MVerticalScrollbar // Options = {
+      "PageSize" -> .2
+    , ImageSize -> Automatic  
+    }
+   
+
+
+   MVerticalScrollbar /: MakeBoxes[ input : MVerticalScrollbar[d_Dynamic, r___], fmt_]:= With[
+     {boxes =  RawBoxes @ BoxLoadingWrapper @ RawBoxes @ MVerticalScrollbarBoxes[1, d, r]}
+   ,  MakeBoxes[
+        Interpretation[
+          boxes
+        , input
+        ]
+      , fmt
+      ]
+    ]; 
+   
+
+
+   MVerticalScrollbar /: MakeBoxes[input : MVerticalScrollbar[d_, r___], fmt_
+   ]:= MakeBoxes[
+     Interpretation[{var = d}
+     , MVerticalScrollbar[Dynamic[var], r]
+     , MVerticalScrollbar[var, r]
+     ]
+   , fmt
+   ]  
+   
+
+
+   MVerticalScrollbarBoxes // Options = Options @ MVerticalScrollbar;
+   
+
+
+   MVerticalScrollbarBoxes // setForwardCompatibility ; 
+   
+
+
+   MVerticalScrollbarBoxes[1, Dynamic[scrollPosition_], OptionsPattern[]]:=ToBoxes @ With[
+    { pageSize = OptionValue["PageSize"]
+    , MPY     := MousePosition[{"GraphicsScaled", Graphics}, {0,0}][[2]]
+    , thumbCol = GrayLevel @ .9
+    , thumbColActive = GrayLevel @ .8
+    , scrollHeight = .2
+    , imageSize  = Replace[OptionValue[ImageSize],  Automatic -> {15, Automatic}]
+   
+    }
+  , DynamicModule[
+      { showScrollbar
+      , scrollRawPosition
+      , mousePositionStart
+      , scrollRawPositionOffset = 0
+      , clipSRPos = Function[pos, Clip[pos, {0 , 1 - scrollHeight }]]
+      , col = GrayLevel[.9]
+      }
+    ,  Module[
+        {pane
+        , scrollbar} 
+      , scrollRawPosition = clipSRPos[1 - (scrollPosition + scrollHeight)]         
+      ; scrollbar = Graphics[
+          DynamicNamespace @ { EdgeForm @ Black, thumbCol
+          , Rectangle[{0, Dynamic[scrollRawPosition]}, {1, Dynamic[scrollRawPosition + scrollHeight]}, BoxID -> "thumb"]      
+          , Black, Inset["=", DynamicLocation["thumb", None, Center]]
+          }      
+        , ImageSize        -> imageSize
+        , PlotRange        -> {{0,1}, {0,1}}
+        , PlotRangePadding -> {2. / 15, 2./200}
+        , ImageMargins->0
+        , PlotRangeClipping->False
+        , AspectRatio->Full
+        
+        
+        , ImagePadding->None
+        , Background->GrayLevel@.95
+        ]
+        
+      ; scrollbar = EventHandler[
+          scrollbar
+        , {
+            "MouseDown" :> (
+              mousePositionStart = MPY
+            ; Which[            (*inside, maybe better vie MouseEntered?*)
+                mousePositionStart < scrollRawPosition
+              , scrollRawPosition = clipSRPos[scrollRawPosition - pageSize]
+              
+              , mousePositionStart > scrollRawPosition + scrollHeight  
+              , scrollRawPosition = clipSRPos[scrollRawPosition + pageSize]
+              
+              , True, scrollRawPositionOffset = MPY - scrollRawPosition 
+              ]
+            )
+          , "MouseDragged" :> (
+              scrollRawPosition = clipSRPos[MPY - scrollRawPositionOffset]
+            )
+          
+          }  
+        ]  
+          (* visibility *)
+      ; scrollbar = PaneSelector[
+          { True -> scrollbar, False-> Spacer[0]}
+        , Dynamic[showScrollbar]
+        ]
+          (* listener*)
+      ; scrollbar = DynamicWrapper[scrollbar    
+        , scrollPosition = 1 - Rescale[scrollRawPosition, {0 , 1-scrollHeight}, {0, 1}]
+        , TrackedSymbols :> {scrollRawPosition}
+        ]
+              
+        
+      ; scrollbar  
+      ]
+    ]
+  ];
+   
+
+
+End[]
+
 
 
 (* ::Section:: *)

@@ -7,61 +7,18 @@ Cell[BoxData[{
   ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"PacletDirectoryAdd", "@", 
-   RowBox[{"FileNameJoin", "[", 
-    RowBox[{"{", 
-     RowBox[{
-      RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"\<MGUI\>\""}], "}"}], 
-    "]"}]}], ";"}]}], \
-"Input",ExpressionUUID->"53d8d195-103b-4d91-8f95-ba18a494f326"],
+   RowBox[{"NotebookDirectory", "[", "]"}]}], ";"}]}], "Input",
+ CellLabel->"In[1]:=",ExpressionUUID->"53d8d195-103b-4d91-8f95-ba18a494f326"],
 
 Cell[BoxData[
- RowBox[{"<<", 
-  "MGUI`"}]], "Input",ExpressionUUID->"af5af979-5e0f-4ea8-ba63-f7e161f754b3"],
-
-Cell[BoxData["MSorter"], \
-"Input",ExpressionUUID->"130d94d1-d963-4103-a0eb-98d67ee39ecc"],
-
-Cell[BoxData[
- RowBox[{"Get", "[", 
-  RowBox[{"\"\<MGUI`\>\"", ",", 
-   RowBox[{"Path", "\[Rule]", 
-    RowBox[{"NotebookDirectory", "[", "]"}]}]}], 
-  "]"}]], "Input",ExpressionUUID->"8ea55f6b-1b3f-4d55-9460-8a2bb2c5b6e1"],
+ RowBox[{"<<", "MGUI`"}]], "Input",
+ CellLabel->"In[3]:=",ExpressionUUID->"af5af979-5e0f-4ea8-ba63-f7e161f754b3"],
 
 Cell[BoxData[
  RowBox[{"SetDirectory", "@", 
   RowBox[{
   "NotebookDirectory", "[", 
    "]"}]}]], "Input",ExpressionUUID->"5803f8a3-522c-4f60-aad0-f88490093b0f"],
-
-Cell[BoxData[
- RowBox[{"CreateFile", "[", 
-  RowBox[{"\"\<MGUI/MGUI.m\>\"", ",", 
-   RowBox[{"CreateIntermediateDirectories", "\[Rule]", "True"}]}], 
-  "]"}]], "Input",ExpressionUUID->"71161a0a-fcbe-4098-95bf-88ee40626c72"],
-
-Cell[BoxData[
- RowBox[{"Export", "[", "\[IndentingNewLine]", 
-  RowBox[{"\"\<MGUI/PacletInfo.m\>\"", ",", "\[IndentingNewLine]", 
-   RowBox[{"Paclet", "[", 
-    RowBox[{
-     RowBox[{"Name", "\[Rule]", "\"\<MGUI\>\""}], ",", 
-     RowBox[{"Version", "\[Rule]", "\"\<0.0.1\>\""}], ",", 
-     RowBox[{"MathematicaVersion", "\[Rule]", "\"\<10+\>\""}], ",", 
-     "\[IndentingNewLine]", 
-     RowBox[{"Extensions", "\[Rule]", 
-      RowBox[{"{", 
-       RowBox[{"{", 
-        RowBox[{"\"\<Kernel\>\"", ",", 
-         RowBox[{"Root", "\[Rule]", "\"\<.\>\""}], ",", 
-         RowBox[{"Context", "\[Rule]", "\"\<MGUI`\>\""}]}], "}"}], "}"}]}]}], 
-    "]"}], ",", "\[IndentingNewLine]", "\"\<Package\>\""}], 
-  "\[IndentingNewLine]", 
-  "]"}]], "Input",ExpressionUUID->"978c3eb8-cf7f-41ec-b669-dde592fd8235"],
-
-Cell[BoxData[
- RowBox[{"Normal", "[", "PacletManager`Paclet`Private`$piDefaults", 
-  "]"}]], "Input",ExpressionUUID->"b7e7fb04-c513-468f-ab1e-1cefc4029597"],
 
 Cell["\<\
 
@@ -104,6 +61,9 @@ Cell[BoxData[
  RowBox[{"?", 
   "MGUI`*"}]], "Input",ExpressionUUID->"28ef47fc-98d2-4977-95b6-bf3dc2a139c5"],
 
+Cell[BoxData["PrintD"], \
+"Input",ExpressionUUID->"abba78c4-cbde-438c-93f1-f87eda8bd49e"],
+
 Cell[CellGroupData[{
 
 Cell["MSorter", \
@@ -129,157 +89,14 @@ Cell[BoxData[
        RowBox[{"Button", "[", 
         RowBox[{"\"\<reset\>\"", ",", 
          RowBox[{"labels", "=", 
-          RowBox[{"Range", "[", "5", "]"}]}]}], "]"}], ",", 
+          RowBox[{"Range", "[", "15", "]"}]}]}], "]"}], ",", 
        "\[IndentingNewLine]", 
        RowBox[{"Dynamic", "@", 
         RowBox[{"Column", "[", 
          RowBox[{"Pane", "/@", "labels"}], "]"}]}]}], "\[IndentingNewLine]", 
       "}"}], ",", "\"\< \>\""}], "\[IndentingNewLine]", "]"}]}], 
-  "\[IndentingNewLine]", 
-  "]"}]], "Input",ExpressionUUID->"5bd7922a-3e27-45c5-949b-8e963409c2e2"],
-
-Cell[BoxData[
- RowBox[{"GenerateSymbolPages", "[", "MSorter", 
-  "]"}]], "Input",ExpressionUUID->"b41497f7-0d3a-411b-8d88-da2d62756a7e"],
-
-Cell[BoxData[
- RowBox[{"?", 
-  "MSorter"}]], \
-"Input",ExpressionUUID->"6cd9ef30-e1b5-473a-ab9c-39636034cf23"],
-
-Cell[BoxData[
- RowBox[{"GenerateDocumentation", "[", "\"\<MGUI`\>\"", 
-  "]"}]], "Input",ExpressionUUID->"3c9f4691-6eeb-466d-98ba-c2c42f9496f3"],
-
-Cell[CellGroupData[{
-
-Cell[BoxData[
- RowBox[{"?", 
-  "DocGen`*"}]], \
-"Input",ExpressionUUID->"ef56f9f5-b25e-4e91-befe-541da28b089a"],
-
-Cell[BoxData[
- DynamicModuleBox[{Typeset`open$$ = True}, 
-  PaneSelectorBox[{False->
-   RowBox[{
-    OpenerBox[Dynamic[Typeset`open$$],
-     ImageSize->Small], 
-    StyleBox["DocGen`", "InfoHeading"]}], True->GridBox[{
-     {
-      RowBox[{
-       OpenerBox[Dynamic[Typeset`open$$],
-        ImageSize->Small], 
-       StyleBox["DocGen`", "InfoHeading"]}]},
-     {GridBox[{
-        {
-         ButtonBox["GenerateDocumentation",
-          BaseStyle->"InformationLink",
-          
-          ButtonData:>{
-           "Info53720035227-4253826", {"GenerateDocumentation", "DocGen`"}},
-          ButtonNote->"DocGen`"], 
-         ButtonBox["IndexDocumentation",
-          BaseStyle->"InformationLink",
-          
-          ButtonData:>{
-           "Info53720035227-4253826", {"IndexDocumentation", "DocGen`"}},
-          ButtonNote->"DocGen`"], 
-         ButtonBox["$DocFooter",
-          BaseStyle->"InformationLink",
-          ButtonData:>{"Info53720035227-4253826", {"$DocFooter", "DocGen`"}},
-          ButtonNote->"DocGen`"]},
-        {
-         ButtonBox["GenerateGuide",
-          BaseStyle->"InformationLink",
-          
-          ButtonData:>{
-           "Info53720035227-4253826", {"GenerateGuide", "DocGen`"}},
-          ButtonNote->"DocGen`"], 
-         ButtonBox["SaveGuide",
-          BaseStyle->"InformationLink",
-          ButtonData:>{"Info53720035227-4253826", {"SaveGuide", "DocGen`"}},
-          ButtonNote->"DocGen`"], 
-         ButtonBox["$DocGenLine",
-          BaseStyle->"InformationLink",
-          ButtonData:>{"Info53720035227-4253826", {"$DocGenLine", "DocGen`"}},
-          ButtonNote->"DocGen`"]},
-        {
-         ButtonBox["GenerateHTMLDocumentation",
-          BaseStyle->"InformationLink",
-          
-          ButtonData:>{
-           "Info53720035227-4253826", {
-            "GenerateHTMLDocumentation", "DocGen`"}},
-          ButtonNote->"DocGen`"], 
-         ButtonBox["SaveSymbolPages",
-          BaseStyle->"InformationLink",
-          
-          ButtonData:>{
-           "Info53720035227-4253826", {"SaveSymbolPages", "DocGen`"}},
-          ButtonNote->"DocGen`"], 
-         ButtonBox["$DocLinkBase",
-          BaseStyle->"InformationLink",
-          ButtonData:>{"Info53720035227-4253826", {"$DocLinkBase", "DocGen`"}},
-          ButtonNote->"DocGen`"]},
-        {
-         ButtonBox["GenerateSymbolPages",
-          BaseStyle->"InformationLink",
-          
-          ButtonData:>{
-           "Info53720035227-4253826", {"GenerateSymbolPages", "DocGen`"}},
-          ButtonNote->"DocGen`"], 
-         ButtonBox["$DocActive",
-          BaseStyle->"InformationLink",
-          ButtonData:>{"Info53720035227-4253826", {"$DocActive", "DocGen`"}},
-          ButtonNote->"DocGen`"], 
-         ButtonBox["$DocumentationColoring",
-          BaseStyle->"InformationLink",
-          
-          ButtonData:>{
-           "Info53720035227-4253826", {"$DocumentationColoring", "DocGen`"}},
-          ButtonNote->"DocGen`"]},
-        {
-         ButtonBox["GenerateTutorial",
-          BaseStyle->"InformationLink",
-          
-          ButtonData:>{
-           "Info53720035227-4253826", {"GenerateTutorial", "DocGen`"}},
-          ButtonNote->"DocGen`"], 
-         ButtonBox["$DocDefaultURLBase",
-          BaseStyle->"InformationLink",
-          
-          ButtonData:>{
-           "Info53720035227-4253826", {"$DocDefaultURLBase", "DocGen`"}},
-          ButtonNote->"DocGen`"], ""}
-       },
-       DefaultBaseStyle->"InfoGrid",
-       GridBoxItemSize->{"Columns" -> {{
-            Scaled[0.31666666666666665`]}}}]}
-    },
-    GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}}]}, 
-   Dynamic[Typeset`open$$],
-   ImageSize->
-    Automatic]]], "Print", \
-"InfoCell",ExpressionUUID->"9a9254dc-46bb-49d5-9a96-aab1ad7cfe8b"]
-}, Open  ]],
-
-Cell[CellGroupData[{
-
-Cell[BoxData[
- RowBox[{"IndexDocumentation", "@", 
-  RowBox[{"FileNameJoin", "[", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"\<MGUI\>\"", ",", 
-     "\"\<Documentation\>\""}], "}"}], 
-   "]"}]}]], "Input",ExpressionUUID->"1691a98d-d3a8-4651-85f0-2f05434f1f38"],
-
-Cell[BoxData["\<\"E:\\\\Idea \
-Projects\\\\MGUI\\\\MGUI\\\\Documentation\\\\Index\"\>"], \
-"Output",ExpressionUUID->"d5045c8e-44cb-4662-a342-8b1ddaec8aea"]
-}, Open  ]],
-
-Cell[CellGroupData[{
+  "\[IndentingNewLine]", "]"}]], "Input",
+ CellLabel->"In[21]:=",ExpressionUUID->"5bd7922a-3e27-45c5-949b-8e963409c2e2"],
 
 Cell[BoxData[{
  RowBox[{"SetDirectory", "@", 
@@ -297,32 +114,35 @@ Cell[BoxData[{
   RowBox[{"AddDocumentationNotebook", "[", 
    RowBox[{"ind", ",", "\"\<TestApp.nb\>\""}], "]"}], ";"}], "\n", 
  RowBox[{"CloseDocumentationNotebookIndexer", "[", "ind", 
-  "]"}]}], "Input",ExpressionUUID->"5c5eae6a-c527-46f0-ac28-23b33a86562f"],
+  "]"}]}], "Input",ExpressionUUID->"5c5eae6a-c527-46f0-ac28-23b33a86562f"]
+}, Closed]],
 
-Cell[BoxData["\<\"E:\\\\Idea \
-Projects\\\\MGUI\\\\MGUI\\\\Documentation\\\\English\"\>"], \
-"Output",ExpressionUUID->"0a3df16f-14be-453a-8a8f-52c3e08bb163"],
+Cell[CellGroupData[{
 
-Cell[BoxData["\<\"E:\\\\Idea \
-Projects\\\\MGUI\\\\MGUI\\\\Documentation\\\\English\\\\Index\"\>"], \
-"Output",ExpressionUUID->"815f63f2-957b-41a1-9b6d-9e1d8b7c3761"],
+Cell["MVerticalScrollbar", \
+"Subsubsection",ExpressionUUID->"5b373560-5285-4271-8a83-aa32becba024"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"x", "=", "1"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"MVerticalScrollbar", "[", 
+  RowBox[{
+   RowBox[{"Dynamic", "[", "x", "]"}], ",", 
+   RowBox[{"ImageSize", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"15", ",", "Automatic"}], "}"}]}]}], "]"}]}], "Input",
+ CellLabel->"In[4]:=",ExpressionUUID->"a277f4fc-9a71-4cda-8079-11bf7ca25f79"],
 
 Cell[BoxData[
- RowBox[{"DocumentationNotebookIndexer", "[", "$Failed", 
-  "]"}]], "Output",ExpressionUUID->"3f30a9cf-80ee-4894-8362-8547b0c2cc53"],
-
-Cell[BoxData[
- RowBox[{"CloseDocumentationNotebookIndexer", "[", 
-  RowBox[{"DocumentationNotebookIndexer", "[", "$Failed", "]"}], 
-  "]"}]], "Output",ExpressionUUID->"061d16b9-bb56-4cfb-82a3-4d06901c7324"]
-}, Open  ]]
+ RowBox[{"PrintDefinitions", "@", "LabeledSlider"}]], "Input",
+ CellLabel->"In[866]:=",ExpressionUUID->"08a5f5e3-80d2-4ade-a17d-a57c67e8393e"]
 }, Open  ]]
 },
-WindowSize->{894, 873},
-WindowMargins->{{Automatic, 108}, {18, Automatic}},
+WindowSize->{730, 873},
+WindowMargins->{{495, Automatic}, {68, Automatic}},
 PrivateNotebookOptions->{"FileOutlineCache"->False},
 TrackCellChangeTimes->False,
-FrontEndVersion->"11.2 for Microsoft Windows (64-bit) (September 10, 2017)",
+FrontEndVersion->"11.3 for Microsoft Windows (64-bit) (March 6, 2018)",
 StyleDefinitions->"Default.nb"
 ]
 
