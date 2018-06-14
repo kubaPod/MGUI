@@ -69,12 +69,14 @@ Cell[CellGroupData[{
 Cell["MSorter", \
 "Subsubsection",ExpressionUUID->"dd693eb2-fe53-43c7-8875-ce49ef1605c8"],
 
+Cell[CellGroupData[{
+
 Cell[BoxData[
  RowBox[{"DynamicModule", "[", 
   RowBox[{
    RowBox[{"{", 
     RowBox[{"labels", "=", 
-     RowBox[{"Range", "[", "15", "]"}]}], "}"}], "\[IndentingNewLine]", ",", 
+     RowBox[{"Range", "[", "7", "]"}]}], "}"}], "\[IndentingNewLine]", ",", 
    RowBox[{"Row", "[", 
     RowBox[{
      RowBox[{"{", "\[IndentingNewLine]", 
@@ -89,14 +91,105 @@ Cell[BoxData[
        RowBox[{"Button", "[", 
         RowBox[{"\"\<reset\>\"", ",", 
          RowBox[{"labels", "=", 
-          RowBox[{"Range", "[", "15", "]"}]}]}], "]"}], ",", 
+          RowBox[{"Range", "[", "7", "]"}]}]}], "]"}], ",", 
        "\[IndentingNewLine]", 
        RowBox[{"Dynamic", "@", 
         RowBox[{"Column", "[", 
          RowBox[{"Pane", "/@", "labels"}], "]"}]}]}], "\[IndentingNewLine]", 
       "}"}], ",", "\"\< \>\""}], "\[IndentingNewLine]", "]"}]}], 
   "\[IndentingNewLine]", "]"}]], "Input",
- CellLabel->"In[21]:=",ExpressionUUID->"5bd7922a-3e27-45c5-949b-8e963409c2e2"],
+ CellLabel->"In[4]:=",ExpressionUUID->"5bd7922a-3e27-45c5-949b-8e963409c2e2"],
+
+Cell[BoxData[
+ DynamicModuleBox[{$CellContext`labels$$ = {3, 2, 1, 5, 4, 6, 7}}, 
+  TemplateBox[{"\[ThinSpace]","\" \"",InterpretationBox[
+     DynamicModuleBox[{
+      MGUI`Private`ready$$, MGUI`Private`display$$, 
+       MGUI`Private`initialization$$}, 
+      DynamicBox[
+       ToBoxes[
+        If[
+         TrueQ[MGUI`Private`ready$$], MGUI`Private`display$$, 
+         ProgressIndicator[Appearance -> "Percolate"]], StandardForm], 
+       ImageSizeCache -> {100., {119., 126.}}, 
+       TrackedSymbols :> {MGUI`Private`ready$$}], 
+      DynamicModuleValues :> {{
+        DownValues[MGUI`Private`initialization$$] = {HoldPattern[
+             MGUI`Private`initialization$$[]] :> (If[
+              Check[Needs["MGUI`"]; True, False], MGUI`Private`display$$ = 
+              RawBoxes[
+                MGUI`Private`MSorter`MSorterBox[1, 
+                 Dynamic[$CellContext`labels$$], ContinuousAction -> True]], 
+              MGUI`Private`display$$ = Tooltip[
+                Style["\[WarningSign]", 40, 
+                 RGBColor[1, 0.25, 0]], 
+                "Failed to load MGUI`, rendering aborted.", 
+                TooltipStyle -> {"Panel", "Message"}]]; 
+            MGUI`Private`ready$$ = True)}}}, 
+      Initialization :> (MGUI`Private`initialization$$[] := (If[
+           Check[Needs["MGUI`"]; True, False], MGUI`Private`display$$ = 
+           RawBoxes[
+             MGUI`Private`MSorter`MSorterBox[1, 
+              Dynamic[$CellContext`labels$$], ContinuousAction -> True]], 
+           MGUI`Private`display$$ = Tooltip[
+             Style["\[WarningSign]", 40, 
+              RGBColor[1, 0.25, 0]], 
+             "Failed to load MGUI`, rendering aborted.", 
+             TooltipStyle -> {"Panel", "Message"}]]; 
+         MGUI`Private`ready$$ = True); MGUI`Private`initialization$$[]), 
+      SynchronousInitialization -> False, 
+      UnsavedVariables :> {MGUI`Private`ready$$, MGUI`Private`display$$}], 
+     MGUI`MSorter[
+      Dynamic[$CellContext`labels$$], ContinuousAction -> True]],
+    InterpretationBox[
+     DynamicModuleBox[{
+      MGUI`Private`ready$$, MGUI`Private`display$$, 
+       MGUI`Private`initialization$$}, 
+      DynamicBox[
+       ToBoxes[
+        If[
+         TrueQ[MGUI`Private`ready$$], MGUI`Private`display$$, 
+         ProgressIndicator[Appearance -> "Percolate"]], StandardForm], 
+       ImageSizeCache -> {100., {119., 126.}}, 
+       TrackedSymbols :> {MGUI`Private`ready$$}], 
+      DynamicModuleValues :> {{
+        DownValues[MGUI`Private`initialization$$] = {HoldPattern[
+             MGUI`Private`initialization$$[]] :> (If[
+              Check[Needs["MGUI`"]; True, False], MGUI`Private`display$$ = 
+              RawBoxes[
+                MGUI`Private`MSorter`MSorterBox[1, 
+                 Dynamic[$CellContext`labels$$]]], MGUI`Private`display$$ = 
+              Tooltip[
+                Style["\[WarningSign]", 40, 
+                 RGBColor[1, 0.25, 0]], 
+                "Failed to load MGUI`, rendering aborted.", 
+                TooltipStyle -> {"Panel", "Message"}]]; 
+            MGUI`Private`ready$$ = True)}}}, 
+      Initialization :> (MGUI`Private`initialization$$[] := (If[
+           Check[Needs["MGUI`"]; True, False], MGUI`Private`display$$ = 
+           RawBoxes[
+             MGUI`Private`MSorter`MSorterBox[1, 
+              Dynamic[$CellContext`labels$$]]], MGUI`Private`display$$ = 
+           Tooltip[
+             Style["\[WarningSign]", 40, 
+              RGBColor[1, 0.25, 0]], 
+             "Failed to load MGUI`, rendering aborted.", 
+             TooltipStyle -> {"Panel", "Message"}]]; 
+         MGUI`Private`ready$$ = True); MGUI`Private`initialization$$[]), 
+      SynchronousInitialization -> False, 
+      UnsavedVariables :> {MGUI`Private`ready$$, MGUI`Private`display$$}], 
+     MGUI`MSorter[
+      Dynamic[$CellContext`labels$$]]],ButtonBox[
+    "\"reset\"", ButtonFunction :> ($CellContext`labels$$ = Range[7]), 
+     Appearance -> Automatic, Evaluator -> Automatic, Method -> "Preemptive"],
+    DynamicBox[
+     ToBoxes[
+      Column[
+       Map[Pane, $CellContext`labels$$]], StandardForm]]},
+   "RowWithSeparators"],
+  DynamicModuleValues:>{}]], "Output",
+ CellLabel->"Out[4]=",ExpressionUUID->"daccdc11-363f-4e97-8853-46549096128c"]
+}, Open  ]],
 
 Cell[BoxData[{
  RowBox[{"SetDirectory", "@", 
@@ -115,12 +208,14 @@ Cell[BoxData[{
    RowBox[{"ind", ",", "\"\<TestApp.nb\>\""}], "]"}], ";"}], "\n", 
  RowBox[{"CloseDocumentationNotebookIndexer", "[", "ind", 
   "]"}]}], "Input",ExpressionUUID->"5c5eae6a-c527-46f0-ac28-23b33a86562f"]
-}, Closed]],
+}, Open  ]],
 
 Cell[CellGroupData[{
 
 Cell["MVerticalScrollbar", \
 "Subsubsection",ExpressionUUID->"5b373560-5285-4271-8a83-aa32becba024"],
+
+Cell[CellGroupData[{
 
 Cell[BoxData[{
  RowBox[{
@@ -131,15 +226,79 @@ Cell[BoxData[{
    RowBox[{"ImageSize", "\[Rule]", 
     RowBox[{"{", 
      RowBox[{"15", ",", "Automatic"}], "}"}]}]}], "]"}]}], "Input",
- CellLabel->"In[4]:=",ExpressionUUID->"a277f4fc-9a71-4cda-8079-11bf7ca25f79"],
+ CellLabel->"In[5]:=",ExpressionUUID->"a277f4fc-9a71-4cda-8079-11bf7ca25f79"],
+
+Cell[BoxData[
+ InterpretationBox[
+  DynamicModuleBox[{MGUI`Private`ready$$, MGUI`Private`display$$, 
+   MGUI`Private`initialization$$}, 
+   DynamicBox[ToBoxes[
+     If[
+      TrueQ[MGUI`Private`ready$$], MGUI`Private`display$$, 
+      ProgressIndicator[Appearance -> "Percolate"]], StandardForm],
+    ImageSizeCache->{15., {213., 219.}},
+    TrackedSymbols:>{MGUI`Private`ready$$}],
+   DynamicModuleValues:>{{
+     DownValues[MGUI`Private`initialization$$] = {HoldPattern[
+          MGUI`Private`initialization$$[]] :> (If[
+           Check[Needs["MGUI`"]; True, False], MGUI`Private`display$$ = 
+           RawBoxes[
+             MGUI`Private`MVerticalScrollbar`MVerticalScrollbarBoxes[1, 
+              Dynamic[$CellContext`x], ImageSize -> {15, Automatic}]], 
+           MGUI`Private`display$$ = Tooltip[
+             Framed[
+              Style["\[WarningSign]", 40, 
+               RGBColor[1, 0.25, 0]]], 
+             "Failed to load MGUI`, rendering aborted.", 
+             TooltipStyle -> {"Panel", "Message"}]]; 
+         MGUI`Private`ready$$ = True)}}},
+   Initialization:>(MGUI`Private`initialization$$[] := (If[
+        Check[Needs["MGUI`"]; True, False], MGUI`Private`display$$ = RawBoxes[
+          MGUI`Private`MVerticalScrollbar`MVerticalScrollbarBoxes[1, 
+           Dynamic[$CellContext`x], ImageSize -> {15, Automatic}]], 
+        MGUI`Private`display$$ = Tooltip[
+          Framed[
+           Style["\[WarningSign]", 40, 
+            RGBColor[1, 0.25, 0]]], 
+          "Failed to load MGUI`, rendering aborted.", 
+          TooltipStyle -> {"Panel", "Message"}]]; 
+      MGUI`Private`ready$$ = True); MGUI`Private`initialization$$[]),
+   SynchronousInitialization->False,
+   UnsavedVariables:>{MGUI`Private`ready$$, MGUI`Private`display$$}],
+  MGUI`MVerticalScrollbar[
+   Dynamic[$CellContext`x], ImageSize -> {15, Automatic}]]], "Output",
+ CellLabel->"Out[6]=",ExpressionUUID->"d6f098df-0f05-487e-8496-047b84d60585"]
+}, Open  ]],
 
 Cell[BoxData[
  RowBox[{"PrintDefinitions", "@", "LabeledSlider"}]], "Input",
- CellLabel->"In[866]:=",ExpressionUUID->"08a5f5e3-80d2-4ade-a17d-a57c67e8393e"]
+ CellLabel->
+  "In[866]:=",ExpressionUUID->"08a5f5e3-80d2-4ade-a17d-a57c67e8393e"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"ToCharacterCode", "[", "\"\<`\>\"", "]"}]], "Input",
+ CellLabel->"In[1]:=",ExpressionUUID->"0d42ecec-fec1-4c1f-b7bd-8941b1ec2387"],
+
+Cell[BoxData[
+ RowBox[{"{", "96", "}"}]], "Output",
+ CellLabel->"Out[1]=",ExpressionUUID->"648daf9c-9515-4a82-bdcc-a99818a23864"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"FromCharacterCode", "[", "96", "]"}]], "Input",
+ CellLabel->"In[2]:=",ExpressionUUID->"2254f691-5fb9-406c-8f44-d7783fb2856e"],
+
+Cell[BoxData["\<\"`\"\>"], "Output",
+ CellLabel->"Out[2]=",ExpressionUUID->"0e30d48e-e355-4862-83b8-2bb2af708eab"]
+}, Open  ]]
 }, Open  ]]
 },
 WindowSize->{730, 873},
-WindowMargins->{{495, Automatic}, {68, Automatic}},
+WindowMargins->{{Automatic, 144}, {Automatic, 44}},
 PrivateNotebookOptions->{"FileOutlineCache"->False},
 TrackCellChangeTimes->False,
 FrontEndVersion->"11.3 for Microsoft Windows (64-bit) (March 6, 2018)",

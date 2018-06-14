@@ -1,6 +1,6 @@
 (* ::Package:: *)
 
-(* ::Section:: *)
+(* ::Section::Closed:: *)
 (*discussion and meta*)
 
 
@@ -8,39 +8,37 @@
 
 
 (* Rought code template that should be used
-
-   Begin["`#ControllerName`"]
+Begin[\"<*FromCharacterCode[96]*>`sel`<*FromCharacterCode[96]*>\"]
    
-   #ControllerName::usage = ...
-   #ControllerName // Options = ...
+   `sel`::usage = \"`sel`[Dynamic[var_], (*!!!*)]\";
+   `sel` // Options = {
+      (*!!!*)
+   };
    
-   #ControllerName /: MakeBoxes[ input : #ControllerName[d_Dynamic, r___], fmt_]:= With[
-     {boxes = BoxLoadingWrapper @ #ControllerNameBoxes[1, d, r]}
+   `sel` /: MakeBoxes[ input : `sel`[d_Dynamic, r___], fmt_]:= With[
+     {boxes = RawBoxes @ BoxLoadingWrapper @ `sel`Boxes[1, d, r]}
    ,  MakeBoxes[
-        Interpretation[
-          boxes
-        , input
-        ]
+        Interpretation[ boxes, input ]
       , fmt  
       ]
-    ]  
+    ];  
    
-   #ControllerName /: MakeBoxes[input : #ControllerName[d_, r___], fmt_
+   `sel` /: MakeBoxes[input : `sel`[d_, r___], fmt_
    ]:= MakeBoxes[
-     Interpretation[{var = d}
-     , #ControllerName[Dynamic[var], r]
-     , #ControllerName[var, r]
-     ]
+     Interpretation[{var = d}, `sel`[Dynamic[var], r], `sel`[var, r] ]
    , fmt
-   ]  
+   ];  
    
-   #ControllerNameBoxes // Options = Options @ #ControllerName;
+   `sel`Boxes // Options = Options @ `sel`;
    
-   #ControllerNameBoxes // setForwardCompatibility ; 
+   `sel`Boxes // setForwardCompatibility ; 
    
-   #ControllerNameBoxes[1, Dynamic[var_], ...]:=... FUN STUFF
+   `sel`Boxes[1, Dynamic[var_], ]:= ToBoxes @ DynamicModule[
+     {}
+   , (*!!! guts here !!!*)
+   ];  
    
-   End[]
+End[]
 
     FAQ:
     ToBoxes @ ControllerName[4] will lead to nested Interpretation?
@@ -90,26 +88,30 @@ BeginPackage["MGUI`"];
 
 
 $panelWrapper = Tooltip[
-  Style["\[WarningSign]",40,RGBColor[1, 0.25, 0]]
+  Style["\[WarningSign]", 40, RGBColor[1, 0.25, 0]]
 , #
 , TooltipStyle->{"Panel","Message"}
 ]&;
 
 
 $errorPanels = $panelWrapper /@ <|
-   "forwardCompatibility" -> "Your MGUI` package is too old to display this output. Please update the package."
- , "failedLoading" -> "Failed to load MGUI`, rendering aborted."    
+   "forwardCompatibility" -> 
+     "Your MGUI` package is too old to display this output. Please update the package."
+ , "failedLoading" -> 
+     "Failed to load MGUI`, rendering aborted."    
 
 |>
 
 
-setForwardCompatibility[controllerDisplay_Symbol]:= With[{panel = $errorPanels["forwardCompatibility"]}
+setForwardCompatibility[controllerDisplay_Symbol]:= With[
+  {panel = $errorPanels["forwardCompatibility"]}
 , controllerDisplay[___]:= panel
 ];
 
 
 
 BoxLoadingWrapper // Attributes = {HoldFirst};
+
 BoxLoadingWrapper[ box_ ]:= With[{ failedLoadingPanel = $errorPanels["failedLoading"]}
 , ToBoxes @ DynamicModule[
   {ready, display, initialization}
@@ -126,7 +128,7 @@ BoxLoadingWrapper[ box_ ]:= With[{ failedLoadingPanel = $errorPanels["failedLoad
     initialization[]:= (
       If[
         Check[Needs["MGUI`"]; True, False]
-      , display = box
+      , display = RawBoxes @ box
       , display = failedLoadingPanel
       ]
     ; ready = True
@@ -140,7 +142,7 @@ BoxLoadingWrapper[ box_ ]:= With[{ failedLoadingPanel = $errorPanels["failedLoad
 GuiToBoxes[a_:"", r___]:= ToBoxes @ $panelWrapper["Unknown syntax error. Failed to typeset: "<>ToString[a,InputForm]]
 
 
-(* ::Subsection::Closed:: *)
+(* ::Subsection:: *)
 (*MSorter*)
 
 
@@ -181,7 +183,7 @@ Begin["`MSorter`"];
   
   MSorterBox // setForwardCompatibility
   
-  MSorterBox[1, Dynamic[list_], OptionsPattern[]] :=  Deploy[
+  MSorterBox[1, Dynamic[list_], OptionsPattern[]] :=  ToBoxes @ Deploy[
     DynamicModule[ (* position refers to y-coordinate*)
       {
         baseLabels
@@ -315,9 +317,8 @@ Begin["`MSorter`"];
 End[]
 
 
-(* ::Subsection:: *)
+(* ::Subsection::Closed:: *)
 (*MVerticalScrollbar*)
-
 
 
 Begin["`MVerticalScrollbar`"]
@@ -333,7 +334,7 @@ Begin["`MVerticalScrollbar`"]
 
 
    MVerticalScrollbar /: MakeBoxes[ input : MVerticalScrollbar[d_Dynamic, r___], fmt_]:= With[
-     {boxes =  RawBoxes @ BoxLoadingWrapper @ RawBoxes @ MVerticalScrollbarBoxes[1, d, r]}
+     {boxes =  RawBoxes @ BoxLoadingWrapper @ MVerticalScrollbarBoxes[1, d, r]}
    ,  MakeBoxes[
         Interpretation[
           boxes
