@@ -14,11 +14,16 @@ Cell[BoxData[
  RowBox[{"<<", "MGUI`"}]], "Input",
  CellLabel->"In[3]:=",ExpressionUUID->"af5af979-5e0f-4ea8-ba63-f7e161f754b3"],
 
+Cell[CellGroupData[{
+
 Cell[BoxData[
  RowBox[{"SetDirectory", "@", 
-  RowBox[{
-  "NotebookDirectory", "[", 
-   "]"}]}]], "Input",ExpressionUUID->"5803f8a3-522c-4f60-aad0-f88490093b0f"],
+  RowBox[{"NotebookDirectory", "[", "]"}]}]], "Input",
+ CellLabel->"In[2]:=",ExpressionUUID->"5803f8a3-522c-4f60-aad0-f88490093b0f"],
+
+Cell[BoxData["\<\"E:\\\\Idea Projects\\\\MGUI\"\>"], "Output",
+ CellLabel->"Out[2]=",ExpressionUUID->"f5681923-0087-4720-a261-104545d947f7"]
+}, Open  ]],
 
 Cell["\<\
 
@@ -98,10 +103,10 @@ Cell[BoxData[
          RowBox[{"Pane", "/@", "labels"}], "]"}]}]}], "\[IndentingNewLine]", 
       "}"}], ",", "\"\< \>\""}], "\[IndentingNewLine]", "]"}]}], 
   "\[IndentingNewLine]", "]"}]], "Input",
- CellLabel->"In[4]:=",ExpressionUUID->"5bd7922a-3e27-45c5-949b-8e963409c2e2"],
+ CellLabel->"In[1]:=",ExpressionUUID->"5bd7922a-3e27-45c5-949b-8e963409c2e2"],
 
 Cell[BoxData[
- DynamicModuleBox[{$CellContext`labels$$ = {3, 2, 1, 5, 4, 6, 7}}, 
+ DynamicModuleBox[{$CellContext`labels$$ = {3, 5, 4, 1, 6, 2, 7}}, 
   TemplateBox[{"\[ThinSpace]","\" \"",InterpretationBox[
      DynamicModuleBox[{
       MGUI`Private`ready$$, MGUI`Private`display$$, 
@@ -188,7 +193,7 @@ Cell[BoxData[
        Map[Pane, $CellContext`labels$$]], StandardForm]]},
    "RowWithSeparators"],
   DynamicModuleValues:>{}]], "Output",
- CellLabel->"Out[4]=",ExpressionUUID->"daccdc11-363f-4e97-8853-46549096128c"]
+ CellLabel->"Out[1]=",ExpressionUUID->"afc74824-6225-4176-96f2-384e39a33d09"]
 }, Open  ]],
 
 Cell[BoxData[{
@@ -236,7 +241,7 @@ Cell[BoxData[
      If[
       TrueQ[MGUI`Private`ready$$], MGUI`Private`display$$, 
       ProgressIndicator[Appearance -> "Percolate"]], StandardForm],
-    ImageSizeCache->{15., {213., 219.}},
+    ImageSizeCache->{36., {25., 32.}},
     TrackedSymbols:>{MGUI`Private`ready$$}],
    DynamicModuleValues:>{{
      DownValues[MGUI`Private`initialization$$] = {HoldPattern[

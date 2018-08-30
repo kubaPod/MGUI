@@ -83,7 +83,7 @@ BeginPackage["MGUI`"];
 (*body*)
 
 
-(* ::Subsection:: *)
+(* ::Subsection::Closed:: *)
 (*commons*)
 
 
@@ -158,7 +158,7 @@ Begin["`MSorter`"];
    "EmbeddingMethod" \[Rule] Automatic*)
   };
   
-  MSorter /: MakeBoxes[controller_MSorter, fmt_]:= GuiToBoxes[controller, fmt];
+  MSorter /: MakeBoxes[controller_MSorter, fmt_]:= MSorterBoxes[controller, fmt];
   
   (*MSorter /: GuiToBoxes[
     MSorter[Dynamic[list_], opts1___, "EmbeddingMethod" \[Rule] None, opts2___]
@@ -166,7 +166,7 @@ Begin["`MSorter`"];
   ]:= ToBoxes @ Dynamic[MSorterDisplay[1, Dynamic[list], opts1,opts2], None]
   *)
   
-  GuiToBoxes[controller: MSorter[static_List, patt :OptionsPattern[]], fmt_] := MakeBoxes[
+  MSorterBoxes[controller: MSorter[static_List, patt :OptionsPattern[]], fmt_] := MakeBoxes[
     Interpretation[{ var = static}
     , MSorter[Dynamic[var], patt]
     , MSorter[var, patt]
@@ -174,7 +174,7 @@ Begin["`MSorter`"];
   , fmt  
   ];
   
-  GuiToBoxes[controller: MSorter[dVar_Dynamic, patt :OptionsPattern[]], fmt_] := With[
+  MSorterBoxes[controller: MSorter[dVar_Dynamic, patt :OptionsPattern[]], fmt_] := With[
     {controllerBoxes = BoxLoadingWrapper @ MSorterBox[1, dVar, patt]}
   , InterpretationBox[controllerBoxes, controller]
   ];
