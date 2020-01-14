@@ -227,7 +227,7 @@ Begin["`MSorter`"];
       
     , Initialization :>(
         print = Print[Framed@Column[{#}]]&;
-        print = Function[x,Null,HoldAll]
+       (* print = Function[x,Null,HoldAll]*)
         
        ; this["init"]:= (
           print["init"]
@@ -261,7 +261,7 @@ Begin["`MSorter`"];
                (* , TrackedSymbols\[RuleDelayed]{active}*)
               ]
             }
-          , ImageSize -> (labelSize{1,n}+0{4, 2n+2})
+          , ImageSize -> (labelSize{1,n} + 0{4, 2n+2})
           , AspectRatio -> Full
           , Frame -> False
           , PlotRangePadding -> None
@@ -366,12 +366,12 @@ Begin["`MVerticalScrollbar`"]
 
 
    MVerticalScrollbarBoxes[1, Dynamic[scrollPosition_], OptionsPattern[]]:=ToBoxes @ With[
-    { pageSize = OptionValue["PageSize"]
-    , MPY     := MousePosition[{"GraphicsScaled", Graphics}, {0,0}][[2]]
-    , thumbCol = GrayLevel @ .9
+    { pageSize       = OptionValue["PageSize"]
+    , MPY           := MousePosition[{"GraphicsScaled", Graphics}, {0,0}][[2]]
+    , thumbCol       = GrayLevel @ .9
     , thumbColActive = GrayLevel @ .8
-    , scrollHeight = .2
-    , imageSize  = Replace[OptionValue[ImageSize],  Automatic -> {15, Automatic}]
+    , scrollHeight   = .2
+    , imageSize      = Replace[OptionValue[ImageSize],  Automatic -> {15, Automatic}]
    
     }
   , DynamicModule[
